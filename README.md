@@ -3,9 +3,12 @@
 Dupla **Bruno Nascimento** e **Vinicius Tavares**.
 
 ### Descricao
-    Trabalho para disciplina de PMBD2
-    
+ Trabalho para disciplina de PMBD2
+
+
+
 * [Enunciado](https://github.com/Chipskein/pmbd-trab2/tree/main/Enunciado.md)
+  
 * [TODO](https://github.com/Chipskein/pmbd-trab2/tree/main/TODO.md)
 
 ---
@@ -41,7 +44,7 @@ flask run
 
 Autores
 
-    * [Bruno Nascimento](https://github.com/Chipskein)
+* [Bruno Nascimento](https://github.com/Chipskein)
 
-    * [Vinicius Tavares](https://github.com/Viniciusilvainfo)
+* [Vinicius Tavares](https://github.com/Viniciusilvainfo)
 
