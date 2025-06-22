@@ -7,9 +7,9 @@ Dupla **Bruno Nascimento** e **Vinicius Tavares**.
 
 
 
-* [Enunciado](https://github.com/Chipskein/pmbd-trab2/tree/main/Enunciado.md)
+* [Enunciado](https://github.com/Chipskein/pmbd-trab2/tree/master/Enunciado.md)
   
-* [TODO](https://github.com/Chipskein/pmbd-trab2/tree/main/TODO.md)
+* [TODO](https://github.com/Chipskein/pmbd-trab2/tree/master/TODO.md)
 
 ---
 
