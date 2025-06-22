@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">Detalhes do Pedido</h2>
+
+  <form  id="form-editar" method="POST" action="{{ url_for('pedido.update', pedido_id=pedido.id) }}">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Informações do Pedido</h5>
+
+        <div class="mb-3">
+          <label class="form-label">ID do Pedido</label>
+          <input type="text" class="form-control" value="{{ pedido.id }}" readonly>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Cliente</label>
+          <input type="text" class="form-control" name="usuario_id" value="{{ pedido.cliente_nome }}" {% if not edit
+            %}readonly{% endif %}>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Status</label>
+          {% if edit %}
+          <select class="form-select" name="status">
+            {% for st in status %}
+            <option value="{{ st.id }}" {% if pedido.status_id==st.id %}selected{% endif %}>
+              {{ st.descricao | capitalize }}
+            </option>
+            {% endfor %}
+          </select>
+          {% else %}
+          <input type="text" class="form-control" value="{{ pedido.status }}" readonly>
+          {% endif %}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Total</label>
+          <input type="text" class="form-control" name="total" value="{{ pedido.total }}" {% if not edit %}readonly{%
+            endif %}>
+        </div>
+      </div>
+    </div>
+
+    <h4>Itens do Pedido</h4>
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Ingredientes</th>
+          <th>Preço</th>
+          <th>Disponível</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in pedido.get('items',[]) %}
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>
+            {{ item.nome }}
+          </td>
+          <td>
+            {{ item.descricao }}
+          </td>
+          <td>
+            {{ item.ingredientes }}
+          </td>
+          <td>
+            R$ {{ item.preco }}
+          </td>
+          <td class="text-center">
+            {% if item.disponivel %}
+            <span class="badge bg-success">Sim</span>
+            {% else %}
+            <span class="badge bg-danger">Não</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    
+    <div class="text-end">
+      {% if edit and not is_user%}
+        <button type="submit" form="form-editar" class="btn btn-primary">Salvar Alterações</button>
+      {%elif is_user and is_pedido_pendente%}
+          <button type="submit" class="btn btn-danger" name="action" value="cancel">Cancelar pedido</button>
+      {% endif %}
+    </div>
+    
+  </form>
+</div>
+{% endblock %}

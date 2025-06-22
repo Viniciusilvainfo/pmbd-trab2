@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2>Criar Usuário</h2>
+
+  {% if erros %}
+  <div class="alert alert-danger">{{ erros.msg }}</div>
+  {% endif %}
+
+  {% if msg %}
+  <div class="alert alert-success">{{ msg }}</div>
+  {% endif %}
+
+  <form method="POST" action="{{ url_for('usuario.index') }}" novalidate>
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="nome" name="nome" required
+             value="{{ request.form.nome if request.method == 'POST' else '' }}">
+      <div class="invalid-feedback">
+        Por favor, insira seu nome.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" name="email" required
+             value="{{ request.form.email if request.method == 'POST' else '' }}">
+      <div class="invalid-feedback">
+        Por favor, insira um email válido.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="senha" class="form-label">Senha</label>
+      <input type="password" class="form-control" id="senha" name="senha" minlength="6" required>
+      <div class="invalid-feedback">
+        A senha deve ter ao menos 6 caracteres.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Criar Usuário</button>
+  </form>
+</div>
+
+<script>
+(() => {
+  'use strict'
+  const forms = document.querySelectorAll('form')
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+{% endblock %}

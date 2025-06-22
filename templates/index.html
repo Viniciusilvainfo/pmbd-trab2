@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center menu-container"
+    style="height: 100vh !important;">
+    <div class="text-center">
+        <h1 class="mb-4">Bem-vindo {{session.get('usuario',{}).get('nome','Desconhecido')}}!</h1>
+        <a href="/cardapio" class="btn btn-primary btn-lg mb-3 w-100">Cardapio</a><br>
+        <a href="/pedido" class="btn btn-primary btn-lg mb-3 w-100">Meus Pedidos</a><br>
+        <a href="/pedido/recent" class="btn btn-primary btn-lg mb-3 w-100">Detalhar pedido</a><br>
+        {% if session.get('usuario',{}).get('admin',False) %}
+            <a href="/painel_admin" class="btn btn-primary btn-lg mb-3 w-100">Painel da cozinha</a>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
