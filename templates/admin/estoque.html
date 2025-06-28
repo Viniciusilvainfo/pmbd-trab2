@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Gestão de Estoque</h2>
+    
+    <div class="card mt-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Item do Cardápio</th>
+                            <th>Ingrediente</th>
+                            <th>Quantidade</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in estoque %}
+                        <tr>
+                            <td>{{ item.item_cardapio }}</td>
+                            <td>{{ item.ingrediente }}</td>
+                            <td>
+                                <form method="post" action="{{ url_for('admin.atualizar_estoque') }}" class="d-flex">
+                                    <input type="hidden" name="estoque_id" value="{{ item.id }}">
+                                    <input type="number" name="quantidade" value="{{ item.quantidade }}" 
+                                           class="form-control form-control-sm" style="width: 80px;">
+                                    <button type="submit" class="btn btn-sm btn-primary ms-2">
+                                        Atualizar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

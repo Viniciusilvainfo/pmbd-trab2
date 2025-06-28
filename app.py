@@ -4,6 +4,7 @@ from werkzeug.security import check_password_hash
 from cardapio import cardapio_bp
 from pedido import pedido_bp
 from usuario import usuario_bp
+from admin import admin_bp
 from db.Database import Database
 from usuario.dao import UsuarioDAO
 
@@ -11,7 +12,7 @@ app = Flask(__name__)
 
 app.secret_key = 'nao vou usar env nessa porra'
 
-
+app.register_blueprint(admin_bp, url_prefix='/admin')
 app.register_blueprint(cardapio_bp, url_prefix='/cardapio')
 app.register_blueprint(pedido_bp, url_prefix='/pedido')
 app.register_blueprint(usuario_bp, url_prefix='/usuario')

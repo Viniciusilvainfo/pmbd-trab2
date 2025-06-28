@@ -8,7 +8,7 @@
         <a href="/pedido" class="btn btn-primary btn-lg mb-3 w-100">Meus Pedidos</a><br>
         <a href="/pedido/recent" class="btn btn-primary btn-lg mb-3 w-100">Detalhar pedido</a><br>
         {% if session.get('usuario',{}).get('admin',False) %}
-            <a href="/painel_admin" class="btn btn-primary btn-lg mb-3 w-100">Painel da cozinha</a>
+            <a href="/admin" class="btn btn-primary btn-lg mb-3 w-100">Painel da cozinha</a>
         {% endif %}
 
     </div>

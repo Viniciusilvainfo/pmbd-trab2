@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Gestão de Pedidos</h2>
+    
+    <div class="card mt-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Status</th>
+                            <th>Data/Hora</th>
+                            <th>Total</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pedido in pedidos %}
+                        <tr>
+                            <td>{{ pedido.id }}</td>
+                            <td>{{ pedido.cliente_nome }}</td>
+                            <td>{{ pedido.status }}</td>
+                            <td>{{ pedido.data_hora }}</td>
+                            <td>R$ {{ "%.2f"|format(pedido.total) }}</td>
+                            <td>
+                                <a href="{{ url_for('pedido.update', pedido_id=pedido.id) }}" class="btn btn-sm btn-primary">
+                                    Detalhes
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            {% include 'pagination.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}
