@@ -8,6 +8,7 @@
       <th>Status</th>
       <th>Total</th>
       <th>Items</th>
+      <th>Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,11 @@
       <td>{{ pedido.status }}</td>
       <td>R$ {{ "%.2f"|format(pedido.total) }}</td>
       <td><span class="toggle-icon" data-id="{{ pedido.id }}">▶</span></td>
+      <td>
+        <a href="{{ url_for('pedido.update', pedido_id=pedido.id) }}" class="btn btn-sm btn-primary">
+          Editar
+        </a>
+      </td>
     </tr>
     <tr class="collapse" id="items{{ pedido.id }}">
       <td colspan="4" class="p-0">
